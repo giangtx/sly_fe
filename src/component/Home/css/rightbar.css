@@ -1,0 +1,23 @@
+.right-bar {
+  height: 620px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: fixed;
+  right: 0;
+  background-color: #c6ccd52b;
+  border-left: 0.8px solid #55555538;
+  max-width: 250px;
+}
+
+.right-bar-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.8px solid #55555538;
+  margin-bottom: 5px;
+  padding-left: 15px;
+  background-color:#d7dee82b;
+}
+.right-bar-header span {
+  font-weight: 500;
+  margin-left: 8px;
+}

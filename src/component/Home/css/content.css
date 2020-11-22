@@ -1,0 +1,76 @@
+.froum-content {
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 30px;
+}
+.avatar-froum-div {
+  max-height: 60px;
+  max-width: 60px;
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+.avatar-froum {
+  height: 60px;
+  width: auto;
+}
+.image-froum {
+  width: 100%;
+  height: auto;
+}
+.header-avatar-froum {
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  background-color: #f7f7f7;
+}
+.header-avatar-froum a {
+  color: black;
+  text-decoration: none;
+}
+.icon-like button {
+  max-height: 40px;
+  max-width: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.icon-like img {
+  width: 100%;
+  height: auto;
+}
+.icon-like {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.describe-image {
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+#top-like {
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.title-toplike {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-bottom: 20px;
+}
+.title-toplike span {
+  font-weight: 500;
+}
+.image-top-like {
+  max-width: 115px;
+  max-height: auto;
+}
+.image-top-like-all {
+  padding-left: 15px;
+  padding-bottom: 15px;
+}

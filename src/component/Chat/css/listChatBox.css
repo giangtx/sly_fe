@@ -1,0 +1,39 @@
+.chatbox{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 15px;
+}
+.chatbox p{
+	margin: 0px;
+}
+.chatbox-active{
+	background-color: #c6ccd52b;
+}
+.chatbox-a{
+	margin-right: 5px;
+}
+.chatbox-a a{
+	color: black;
+	text-decoration: none;
+}
+.avatar-chat-div{
+	max-height: 50px;
+	max-width: 50px;
+	overflow: hidden;
+	border-radius: 100%;
+	display:flex;
+	align-items:center;
+    justify-content:center;
+    margin-right: 10px;
+}
+.avatar-chat{
+	height: 50px;
+	width: auto;
+}
+.chatbox_p{
+	padding-top: 5px;
+}
+.chatbox-a a:hover{
+	color: black !important;
+	text-decoration: none !important;
+}

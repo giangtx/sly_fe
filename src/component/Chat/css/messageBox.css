@@ -1,0 +1,69 @@
+.message_box {
+  padding-top: 10px;
+}
+.avatar-message-chat-div {
+  max-height: 30px;
+  max-width: 30px;
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-message-chat {
+  height: 30px;
+  width: auto;
+}
+.message_content {
+  height: 575px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 15px;
+}
+
+.message {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.message_detail {
+  max-width: 450px;
+  border-radius: 15px;
+  color: white;
+  width: fit-content;
+  line-height: 18px;
+}
+.message_detail_friend {
+  background-color: #e3e3e3;
+  color: black;
+}
+.message_detail_user {
+  background-color: #0084ff;
+}
+.message-div {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 7px;
+  text-align: left;
+}
+.icon-send {
+  height: 25px;
+  width: auto;
+  cursor: pointer;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(223, 219, 219, 0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #dfdfdf;
+}

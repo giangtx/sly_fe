@@ -1,0 +1,46 @@
+.chatbox-home {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 15px;
+  display: flex;
+  margin-bottom: 5px;
+  padding-left: 15px;
+}
+.chatbox-home p {
+  margin: 0px;
+}
+.chatbox-a-home a:hover {
+  color: black !important;
+  text-decoration: none !important;
+}
+.chatbox-a-home {
+  margin-right: 5px;
+}
+.chatbox-a-home a {
+  color: black;
+  text-decoration: none !important;
+}
+.des-home-chat {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.text-chat-box-home {
+  max-width: 160px;
+  line-height: 18px;
+  padding-top: 1px;
+}
+.avatar-chat-div-home {
+  max-height: 40px;
+  max-width: 40px;
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.avatar-chat-home {
+  height: 40px;
+  width: auto;
+}

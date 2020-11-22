@@ -1,0 +1,9 @@
+.message_title{
+	padding-bottom: 10px;
+	border-bottom: 0.8px solid #55555538;
+}
+.title-message-box{
+	text-transform: capitalize;
+	font-size: 20px;
+	font-weight: 500;
+}

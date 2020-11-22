@@ -1,0 +1,148 @@
+#div-top-shop {
+  padding-left: 60px;
+  padding-top: 6px;
+  padding-right: 50px;
+}
+#hello-span {
+  color: #555555;
+  font-family: monospace;
+  font-size: 15px;
+  margin-top: 28px;
+}
+#login-top {
+  color: white;
+  font-size: 17px;
+  margin-left: 15px;
+}
+#logout {
+  color: #555555;
+  font-size: 15px;
+}
+#account-name {
+  text-transform: capitalize;
+  color: #555555;
+  font-size: 20px;
+  margin-left: 15px;
+  font-weight: 500;
+}
+.padding-sly {
+  padding-top: 30px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
+.site-title-header {
+  font-size: 30px;
+  font-family: BeyondTheMountains;
+}
+@font-face {
+  font-family: BeyondTheMountains;
+  src: url("../../../fonts/beyond_the_mountains.ttf");
+}
+.site-title-header a {
+  color: white;
+  text-decoration: none;
+}
+.site-title-header a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.site-tiny {
+  font-size: 10px;
+  margin-top: -10px;
+  margin-left: 170px;
+  color: #dddddd;
+}
+#nav-sticky {
+  background-color: white;
+  border-bottom: 0.8px solid #55555538;
+  z-index: 1;
+  padding-top: 8px;
+  padding-bottom: 5px;
+}
+.nav-item a {
+  color: #dadada;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 1px 3px 12px -5px rgba(0, 0, 0, 0.2);
+}
+#search {
+  padding-left: 30px;
+  padding-bottom: 25px;
+  padding-right: 10px;
+}
+#search input[type="text"] {
+  max-width: 97%;
+  border: solid 1px #dbdbdb;
+  border-radius: 2px;
+  outline: none;
+}
+#btn-search {
+  cursor: pointer;
+}
+.image-search {
+  height: 25px;
+  width: auto;
+}
+.p-t-logo {
+  padding-top: 8px;
+  display: flex;
+  float: right;
+  padding-right: 50px;
+  font-weight: 500;
+}
+.p-t-logo a {
+  text-decoration: none !important;
+}
+.header-sly {
+  position: fixed;
+  width: 100%;
+  margin-bottom: 50px;
+  background-color: #3b4477 !important;
+}
+.label_search_chatbox-home {
+  margin: 0px;
+  padding: 0.4rem 1rem;
+  width: 100%;
+}
+.info-user-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  padding-left: 15px;
+  width: fit-content;
+  padding-right: 50px;
+}
+.avatar-header-div {
+  max-height: 35px;
+  max-width: 35px;
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+.avatar-header {
+  height: 40px;
+  width: auto;
+}
+.text-info-header {
+  padding-top: 4px;
+  color: #ededed;
+  cursor: pointer;
+}
+.text-info-header a{
+  color: white;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.text-info-header a:hover{
+  color: #ededed;
+  text-decoration: none;
+}
