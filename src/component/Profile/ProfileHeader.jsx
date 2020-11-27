@@ -62,10 +62,10 @@ ProfileHeader.defaultProps = {
   coverImage: '',
 };
 ProfileHeader.propTypes = {
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  coverImage: PropTypes.string.isRequired,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  username: PropTypes.string,
+  avatar: PropTypes.string,
+  coverImage: PropTypes.string,
 };
 export default ProfileHeader;

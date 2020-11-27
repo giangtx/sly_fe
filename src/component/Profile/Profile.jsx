@@ -53,7 +53,9 @@ const Profile = ({
                         gender={profile.gender}
                         birthday={profile.birthday}
                       />
-                      <FriendTab></FriendTab>
+                      <FriendTab
+                        friends={profile.friends}
+                      />
                       <ImageTab username={params.username}></ImageTab>
                     </div>
                   </div>

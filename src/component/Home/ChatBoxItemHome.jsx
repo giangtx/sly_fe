@@ -1,20 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './css/chatBoxItemHome.css';
+import "./css/chatBoxItemHome.css";
 
 const ChatBoxItemHome = ({ id, image, name, lastMessage }) => {
   return (
     <div className="chatbox-a-home">
       <Link to={"/Slytherin/chat/" + id}>
-        <div className="chatbox-home" >
-          <div className="avatar-chat-div-home" style={{ padding: "0px" }}>
-            <img
-              className="avatar-chat-home"
-              src={`/image/avatar/${image}`}
-              alt=""
-            />
+        <div className="chatbox-home">
+          <div className="tooltip-home-chat">
+            <div className="avatar-chat-div-home" style={{ padding: "0px" }}>
+              <img
+                className="avatar-chat-home"
+                src={`/image/avatar/${image}`}
+                alt=""
+              />
+            </div>
+            <span className="tooltiptext-home-chat">{name}</span>
           </div>
-          <div className="text-chat-box-home">
+          {/* <div className="text-chat-box-home">
             <div>
               <p style={{ fontSize: "15px", textTransform: "capitalize" }}>
                 {name}
@@ -24,7 +27,7 @@ const ChatBoxItemHome = ({ id, image, name, lastMessage }) => {
                 <span style={{ color: "#868686" }}></span>
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </Link>
     </div>

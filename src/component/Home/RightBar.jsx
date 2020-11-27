@@ -181,11 +181,12 @@ const RightBar = () => {
   return (
     <>
       <div className="right-bar">
-        <div className="right-bar-header">
-          <i className="far fa-address-book"></i>
-          <span>Liên lạc</span>
+        <div className="right-bar-body">
+          <div className="right-bar-header">
+            <i className="far fa-address-book"></i>
+          </div>
+          {list}
         </div>
-        {list}
       </div>
     </>
   );

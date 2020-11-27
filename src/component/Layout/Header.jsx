@@ -5,17 +5,24 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
 
-const Header = ({ loggedIn, userInfo, getSuccess, getFailed, getError, getInfo, logout }) => {
-  const history = useHistory();
+const Header = ({
+  loggedIn,
+  userInfo,
+  getSuccess,
+  getFailed,
+  getError,
+  getInfo,
+  logout,
+}) => {
   useEffect(() => {
-    if (loggedIn){
+    if (loggedIn) {
       getInfo();
     }
   }, []);
-  const handleLogout = () => {
-    logout();
-    history.go('/')
-  }
+  const handleLogout = async () => {
+    await logout();
+    document.location.href = "/";
+  };
   return (
     <>
       <div>
@@ -35,7 +42,7 @@ const Header = ({ loggedIn, userInfo, getSuccess, getFailed, getError, getInfo, 
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/slytherin/bosuutap">
+                    <Link className="nav-link" to="/slytherin/friend/my">
                       Bạn bè
                     </Link>
                   </li>
@@ -60,7 +67,9 @@ const Header = ({ loggedIn, userInfo, getSuccess, getFailed, getError, getInfo, 
                       >
                         <img
                           className="avatar-header"
-                          src={`http://localhost:3013/user/image/${userInfo ? userInfo.avatar : ""}`}
+                          src={`http://localhost:3013/user/image/${
+                            userInfo ? userInfo.avatar : ""
+                          }`}
                           alt=""
                         />
                       </div>
@@ -101,20 +110,18 @@ const mapStateToProps = (state) => ({
   loggedIn: state.auth.loginState,
   userInfo: state.user.userInfo,
   getSuccess: state.user.getInfoSuccessState,
-  getFailed: state.user.getInfoFailedState, 
+  getFailed: state.user.getInfoFailedState,
   getError: state.user.getInfoErrorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInfo: () =>
-    dispatch(Actions.getInfo()),
-  logout: () => 
-    dispatch(Actions.logoutAction()),
+  getInfo: () => dispatch(Actions.getInfo()),
+  logout: () => dispatch(Actions.logoutAction()),
 });
 
 Header.defaultProps = {
   userInfo: null,
-  getError: { error: '' },
+  getError: { error: "" },
   loggedIn: false,
 };
 

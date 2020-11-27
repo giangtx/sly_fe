@@ -12,6 +12,8 @@ import Layout from '../src/component/Layout/Layout';
 import Home from '../src/component/Home/Home';
 import Chat from '../src/component/Chat/Chat';
 import Profile from '../src/component/Profile/Profile';
+import Post from '../src/component/Post/Post';
+import Friend from '../src/component/Friend/Friend';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route exact={true} path="/slytherin" component={Home}></Route>
           <Route path="/slytherin/chat" component={Chat}></Route>
           <Route path="/slytherin/profile/:username" component={Profile}></Route>
+          <Route path="/slytherin/post/:id" component={Post}></Route>
+          <Route path="/slytherin/friend/:id" component={Friend}></Route>
         </Layout>
       </Switch>
     </Router>

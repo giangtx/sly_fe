@@ -3,7 +3,6 @@
   padding-bottom: 5px;
   border-radius: 15px;
   display: flex;
-  margin-bottom: 5px;
   padding-left: 15px;
 }
 .chatbox-home p {
@@ -40,7 +39,42 @@
   justify-content: center;
   margin-right: 10px;
 }
+.avatar-chat-div-home:hover{
+  border-radius: 15px !important;
+}
 .avatar-chat-home {
   height: 40px;
   width: auto;
+}
+.tooltip-home-chat {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-home-chat .tooltiptext-home-chat {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  right: 110%;
+}
+
+.tooltip-home-chat .tooltiptext-home-chat::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+.tooltip-home-chat:hover .tooltiptext-home-chat {
+  visibility: visible;
 }

@@ -31,10 +31,19 @@ export const putApi = async (url, data) => {
     headers: {
       Accept: "Application/json",
       "Content-type": "Application/json",
-      credentials: "same-origin",
     },
+    credentials: "include",
     body: JSON.stringify(data),
   };
   return fetch(BASE_URL + url, options).then((res) => res.json());
 };
-
+export const postForm = async(url, data) => {
+  const options = {
+    method: "post",
+    headers: {
+    },
+    credentials: "include",
+    body: data,
+  };
+  return fetch(BASE_URL + url, options).then((res) => res.json());
+}

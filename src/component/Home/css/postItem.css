@@ -1,3 +1,72 @@
 .like-button-post {
   outline: none !important;
 }
+.image-post-item{
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-froum {
+  width: 100%;
+  height: auto;
+}
+.image-froum-left {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-post-item-left{
+  width: 100%;
+  overflow: hidden;
+}
+.image-post-last-item{
+  position: relative;
+}
+.xt-image-post{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  height: 100%;
+  line-height:180px;
+  background-color: #00000038;
+  font-weight: 600;
+  font-size: 25px;
+}
+.tooltip-post {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-post .tooltiptext-post {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip-post:hover .tooltiptext-post {
+  visibility: visible;
+}
+.tooltip-post .tooltiptext-post::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

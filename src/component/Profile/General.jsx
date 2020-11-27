@@ -66,9 +66,9 @@ General.defaultProps = {
   birthday: '',
 };
 General.propTypes = {
-  description: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
-  gender: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  address: PropTypes.string,
+  gender: PropTypes.string,
+  birthday: PropTypes.string,
 };
 export default General;

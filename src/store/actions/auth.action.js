@@ -28,7 +28,7 @@ export const loginAction = (username, password) => {
             }),
           );
         } else {
-          Cookies.set('x-token-user', result.user.username);
+          Cookies.set('x-token-user', result.user.username, { expires: 7, path: '' });
           dispatch(actionCreator(auth.LOGIN_SUCCESS, result.data));
         }
       })

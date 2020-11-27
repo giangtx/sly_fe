@@ -1,0 +1,93 @@
+.friend-header {
+  padding: 0px 10px;
+  display: flex;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 30px;
+}
+.friend-header a {
+  color: black;
+  text-decoration: none;
+}
+.friend-header a:hover {
+  color: black;
+  text-decoration: none;
+}
+.friend-header-text-friend {
+  padding-top: 8px;
+  width: 90px;
+  margin-right: 10px;
+}
+.friend-header-text-add {
+  width: 165px;
+  padding-top: 8px;
+  margin-right: 10px;
+}
+.friend-header-text-app {
+  width: 130px;
+  padding-top: 8px;
+  margin-right: 10px;
+}
+.friend-content {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+}
+.friend-info-item {
+  display: flex;
+}
+.friend-info-item-div {
+  max-height: 45px;
+  max-width: 45px;
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+.friend-avatar-item {
+  height: 45px;
+  width: auto;
+}
+.friend-item-des {
+  font-size: 14px;
+  color: #575757;
+  width: 100%;
+  line-height: 1.3;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}
+.friend-item-des-div {
+  width: 150px;
+  height: 60px;
+  overflow: hidden;
+}
+.btn-friend-add {
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.btn-friend-add button {
+  border: none;
+  color: white;
+  background-color: #57a7fd;
+  outline: none !important;
+  border-radius: 5px;
+}
+.btn-friend-approval{
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.btn-friend-approval button{
+  border: none;
+  color: white;
+  background-color: #20c997;
+  outline: none !important;
+  border-radius: 5px;
+}
+.active-header-friend {
+  font-weight: 500;
+}

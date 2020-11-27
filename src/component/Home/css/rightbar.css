@@ -4,18 +4,23 @@
   overflow-x: hidden;
   position: fixed;
   right: 0;
+  width: 250px;
+}
+.right-bar-body {
+  float: right;
   background-color: #c6ccd52b;
   border-left: 0.8px solid #55555538;
   max-width: 250px;
 }
 
 .right-bar-header {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-bottom: 0.8px solid #55555538;
   margin-bottom: 5px;
-  padding-left: 15px;
   background-color:#d7dee82b;
+  font-size: 30px;
+  text-align: center;
 }
 .right-bar-header span {
   font-weight: 500;
