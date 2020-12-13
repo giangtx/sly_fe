@@ -2,100 +2,43 @@ import React, { useRef, useEffect } from "react";
 import TitleBox from "./TitleBox";
 import MessageItem from "./MessageItem";
 import "./css/messageBox.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Actions from "../../store/actions";
+import { useParams } from "react-router-dom";
 
-const MessageBox = () => {
+const MessageBox = ({
+  setMessage,
+  sendMessage,
+  message,
+  messages,
+  getSuccess,
+  getFailed,
+  getError,
+  getMessageByChat,
+  size,
+  currentPage,
+  totalPage,
+  name,
+}) => {
+  const params = useParams();
+  useEffect(() => {
+    getMessageByChat(params.id, 10, 1);
+  }, [params.id]);
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView();
   };
-  useEffect(scrollToBottom, []);
+  useEffect(scrollToBottom, [messages]);
 
-  const messages = [
-    {
-      typeuser: 1,
-      content: "hello world",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "Quen à",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content: "Không",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "thế hello cc à",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content: "Ăn cơm chưa",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "gió đưa cây cải về trời",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "Rau Răm ở lại chịu đời đắng cay",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "Hay chớ",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content:
-        "Anh đâu muốn xa con phố ta đã yêu. Nơi ấy hẹn hò đôi ta chuyện trò. Nơi ấy đã từng đón đưa những chiều ta tới trường..",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content:
-        "Tiếng yêu này mỏng manh Giờ tan vỡ, thôi cũng đành Xếp riêng những ngày tháng hồn nhiên Trả hết cho em",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content: "Ăn cơm chưa",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "thế hello cc à",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content: "Ăn cơm chưa",
-      senderimage: "DSC02249.jpg",
-    },
-    {
-      typeuser: 2,
-      content: "Xin lỗi",
-      senderimage: "gai.jpg",
-    },
-    {
-      typeuser: 1,
-      content: "Chấp nhận lời xin lỗi",
-      senderimage: "DSC02249.jpg",
-    },
-  ];
   const list = messages.map((message, index) => {
     return (
       <MessageItem
         key={index}
-        typeuser={message.typeuser}
-        content={message.content}
-        senderimage={message.senderimage}
+        content={message.message}
+        avatar={message.user ? message.user.avatar : null}
+        username={message.user ? message.user.username : null}
+        name={name}
       ></MessageItem>
     );
   });
@@ -118,12 +61,18 @@ const MessageBox = () => {
                 className="search_chatbox"
                 type="text"
                 placeholder="Gửi tin nhắn"
+                value={message}
+                onChange={({ target: { value } }) => setMessage(value)}
+                onKeyPress={(event) =>
+                  event.key === "Enter" ? sendMessage(event) : null
+                }
               ></input>
             </label>
           </div>
           <div
             className="col-lg-1"
             style={{ paddingTop: "10px", paddingLeft: "5px" }}
+            onClick={(e) => sendMessage(e)}
           >
             <img
               className="icon-send"
@@ -136,4 +85,42 @@ const MessageBox = () => {
     </div>
   );
 };
-export default MessageBox;
+const mapStateToProps = (state) => ({
+  messages: state.message.messages,
+  getSuccess: state.message.getMessageByChatSuccessState,
+  getFailed: state.message.getMessageByChatFailedState,
+  getError: state.message.getMessageByChatErrorMessage,
+  size: state.message.size,
+  currentPage: state.message.currentPage,
+  totalPage: state.message.totalPage,
+  // userInfo: state.user.userInfo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMessageByChat: (id, sizeP, pageP) =>
+    dispatch(Actions.getMessageByChatAction(id, sizeP, pageP)),
+  // getInfo: () => dispatch(Actions.getInfo()),
+});
+
+MessageBox.defaultProps = {
+  messages: [],
+  getError: { error: "" },
+  size: 0,
+  currentPage: 0,
+  totalPage: 0,
+  // userInfo: null,
+};
+
+MessageBox.propTypes = {
+  // getInfo: PropTypes.func.isRequired,
+  // userInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  getMessageByChat: PropTypes.func.isRequired,
+  messages: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  getSuccess: PropTypes.bool.isRequired,
+  getFailed: PropTypes.bool.isRequired,
+  getError: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  size: PropTypes.number,
+  currentPage: PropTypes.number,
+  totalPage: PropTypes.number,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MessageBox);

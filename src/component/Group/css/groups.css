@@ -1,0 +1,43 @@
+.group-item-div {
+  display: flex;
+  padding-bottom: 10px;
+}
+.group-item-div-left {
+  float: left;
+}
+.avatar-group-div {
+  max-height: 60px;
+  max-width: 60px;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+.avatar-group-div img {
+  height: 60px;
+  width: auto;
+}
+.group-name-div {
+  font-weight: 600;
+  font-size: 17px;
+}
+.btn-other-tab-join {
+  float: right;
+}
+.btn-other-tab-join button{
+  border: none;
+  outline: none !important;
+  color: white;
+  background-color:#007bff;
+  border-radius: 5px;
+  height: 30px;
+}
+.group-name-div a{
+  color: black;
+}
+.group-name-div a:hover{
+  color: black;
+  text-decoration: none
+}

@@ -26,6 +26,11 @@ const postInitialState = {
   getOneByIdFailedState: false,
   getOneByIdSuccessState: false,
   getOneByIdErrorMessage: null,
+  //get post by group
+  getPostByGroupPendingState: false,
+  getPostByGroupFailedState: false,
+  getPostByGroupSuccessState: false,
+  getPostByGroupErrorMessage: null,
 };
 
 function postReducer(state = postInitialState, action) {
@@ -123,10 +128,36 @@ function postReducer(state = postInitialState, action) {
       return {
         ...state,
         getOneByIdPendingState: false,
-        createPostSuccessState: false,
+        getOneByIdSuccessState: false,
         getOneByIdFailedState: true,
         getOneByIdErrorMessage: payload,
         post: null,
+      };
+    case post.GET_POST_BY_GROUP:
+      return {
+        ...state,
+        getPostByGroupPendingState: true,
+      };
+    case post.GET_POST_BY_GROUP_SUCCESS:
+      return {
+        ...state,
+        getPostByGroupPendingState: false,
+        getPostByGroupFailedState: false,
+        getPostByGroupErrorMessage: null,
+        getPostByGroupSuccessState: true,
+        posts: payload.data,
+        size: parseInt(payload.size),
+        currentPage: parseInt(payload.currentPage),
+        totalPage: parseInt(payload.totalpage),
+      };
+    case post.GET_POST_BY_GROUP_FAILED:
+      return {
+        ...state,
+        getPostByGroupPendingState: false,
+        getPostByGroupSuccessState: false,
+        getPostByGroupFailedState: true,
+        getPostByGroupErrorMessage: payload,
+        posts: [],
       };
     default:
       return state;

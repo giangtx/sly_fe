@@ -1,28 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './css/listChatBox.css';
+import "./css/listChatBox.css";
 
-const ChatBoxItem = ({
-  id,
-  isActive,
-  image,
-  name,
-  lastMessage,
-  time,
-}) => {
+const ChatBoxItem = ({ id, isActive, image, name, lastMessage, time }) => {
   return (
     <>
       <div className="chatbox-a">
-        <Link to={"/Slytherin/chat/"+ id}>
+        <a href={"/slytherin/chat/" + id}>
           <div
-            className={`row chatbox " ${isActive ? "chatbox-active" : ""}`}
+            className={`row chatbox ${isActive ? "chatbox-active" : ""}`}
             style={{ paddingLeft: "15px" }}
           >
-            <div
-              className="avatar-chat-div"
-              style={{ padding: "0px" }}
-            >
-              <img className="avatar-chat" src={`/image/avatar/${image}`} alt="" />
+            <div className="avatar-chat-div" style={{ padding: "0px" }}>
+              <img
+                className="avatar-chat"
+                src={`http://localhost:3013/user/image/${image?image:"blank.jpg"}`}
+                alt=""
+              />
             </div>
             <div>
               <div className="chatbox_p">
@@ -36,7 +30,7 @@ const ChatBoxItem = ({
               </div>
             </div>
           </div>
-        </Link>
+        </a>
       </div>
     </>
   );

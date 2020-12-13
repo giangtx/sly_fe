@@ -52,3 +52,15 @@ export const getApprovalAction = (size, page) => {
       });
   };
 };
+export const addFriendAction = (id) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(friend.ADD_FRIEND));
+    return friendServices.addFriend(id)
+  }
+}
+export const approvalFriendAction = (id, isApproval) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(friend.APPROVAL_FRIEND));
+    return friendServices.approvalFriend(id, isApproval)
+  }
+}

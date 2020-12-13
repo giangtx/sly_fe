@@ -11,4 +11,8 @@ export const friend = {
   GET_APPROVAL_FRIEND: "getApprovalFriend",
   GET_APPROVAL_FRIEND_SUCCESS: "getApprovalFriendSuccess",
   GET_APPROVAL_FRIEND_FAILED: "getApprovalFriendFailed",
+  //add friend
+  ADD_FRIEND: "addFriend",
+  //approval
+  APPROVAL_FRIEND: "approvalFriend",
 };

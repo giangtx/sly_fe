@@ -17,4 +17,8 @@ export const post = {
   GET_ONE_BY_ID_FAILED: "getOneByIdFailed",
   //like handle
   LIKE_HANDLE: "likeHandle",
+  //get post by group
+  GET_POST_BY_GROUP: "getPostByGroup",
+  GET_POST_BY_GROUP_SUCCESS: "getPostByGroupSuccess",
+  GET_POST_BY_GROUP_FAILED: "getPostByGroupFailed",
 };

@@ -116,3 +116,30 @@ export const likeAction = (id) => {
       })
   };
 };
+export const getPostByGroupAction = (id, size, page) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(post.GET_POST_BY_GROUP));
+    return postServices
+      .getPostByGroup(id, size, page)
+      .then((result) => {
+        if (result.status === 404) {
+          dispatch(
+            actionCreator(post.GET_POST_BY_GROUP_FAILED, {
+              error: "Nhóm không tồn tại",
+            })
+          );
+        } else {
+          dispatch(
+            actionCreator(post.GET_POST_BY_GROUP_SUCCESS, result.data)
+          );
+        }
+      })
+      .catch((error) => {
+        dispatch(
+          actionCreator(post.GET_POST_BY_GROUP_FAILED, {
+            error: error.message,
+          })
+        );
+      });
+  };
+};

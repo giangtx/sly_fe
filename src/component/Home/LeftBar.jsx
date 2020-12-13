@@ -29,13 +29,16 @@ const LefttBar = ({ userInfo, getInfo }) => {
         </div>
         <div className="menu-left-bar-tab">
           <div className="item-menu-left-bar-tab">
-            <Link>Hồ sơ</Link>
+            <Link to="">Hồ sơ</Link>
           </div>
           <div className="item-menu-left-bar-tab">
-            <Link>Thông báo</Link>
+            <Link to="">Thông báo</Link>
           </div>
           <div className="item-menu-left-bar-tab">
-            <Link>Tin nhắn</Link>
+            <Link to="/slytherin/chat/0">Tin nhắn</Link>
+          </div>
+          <div className="item-menu-left-bar-tab">
+            <Link to="/slytherin/groups/my">Hội nhóm</Link>
           </div>
         </div>
       </div>

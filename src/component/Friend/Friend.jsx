@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import RightBar from "../Home/RightBar";
 import LeftBar from "../Home/LeftBar";
 import "./css/friend.css";
@@ -6,6 +6,8 @@ import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
+import ApprovalTab from "./ApprovalTab";
+import AddTab from "./AddTab";
 
 const Friend = ({
   friends,
@@ -17,7 +19,9 @@ const Friend = ({
   totalPage,
 }) => {
   const params = useParams();
+  let list = null;
   useEffect(() => {
+    list = null;
     if (params.id === "my") {
       getFriend(10, 1);
     }
@@ -28,7 +32,6 @@ const Friend = ({
       getApproval(10, 1);
     }
   }, [params.id]);
-  let list = null;
   if (params.id === "my") {
     list = friends.map((friend, index) => {
       return (
@@ -43,7 +46,7 @@ const Friend = ({
                 alt=""
               />
             </div>
-            <div className="friend-item-des-div">
+            <div className="friend-item-des-div" style={{ width: "150px" }}>
               <Link
                 to={`/slytherin/profile/${friend.ban && friend.ban.username}`}
                 title=""
@@ -67,61 +70,23 @@ const Friend = ({
   if (params.id === "add") {
     list = friends.map((friend, index) => {
       return (
-        <div className="col-lg-6" key={index}>
-          <div className="friend-info-item">
-            <div className="friend-info-item-div">
-              <img
-                className="friend-avatar-item"
-                src={`http://localhost:3013/user/image/${friend.avatar}`}
-                alt=""
-              />
-            </div>
-            <div className="friend-item-des-div">
-              <Link to={`/slytherin/profile/${friend.username}`} title="">
-                {friend.username}
-              </Link>
-              <p className="friend-item-des">{friend.description}</p>
-            </div>
-            {params.id === "add" && (
-              <div className="btn-friend-add">
-                <button>Kết bạn</button>
-              </div>
-            )}
-          </div>
-        </div>
+        <AddTab 
+          key={index}
+          id={friend.id}
+          avatar={friend.avatar}
+          username={friend.username}
+          description={friend.description}
+        />
       );
     });
   }
   if (params.id === "approval") {
     list = friends.map((friend, index) => {
       return (
-        <div className="col-lg-6" key={index}>
-          <div className="friend-info-item">
-            <div className="friend-info-item-div">
-              <img
-                className="friend-avatar-item"
-                src={`http://localhost:3013/user/image/${
-                  friend.ban && friend.ban.avatar
-                }`}
-                alt=""
-              />
-            </div>
-            <div className="friend-item-des-div">
-              <Link
-                to={`/slytherin/profile/${friend.ban && friend.ban.username}`}
-                title=""
-              >
-                {friend.ban && friend.ban.username}
-              </Link>
-              <p className="friend-item-des">
-                {friend.ban && friend.ban.description}
-              </p>
-            </div>
-            <div className="btn-friend-approval">
-              <button>Đồng ý</button>
-            </div>
-          </div>
-        </div>
+        <ApprovalTab 
+          key={index}
+          ban={friend.ban}
+        />
       );
     });
   }

@@ -14,6 +14,9 @@ import Chat from '../src/component/Chat/Chat';
 import Profile from '../src/component/Profile/Profile';
 import Post from '../src/component/Post/Post';
 import Friend from '../src/component/Friend/Friend';
+import Groups from "../src/component/Group/Groups";
+import Group from "../src/component/Group/Group";
+import GroupMember from "../src/component/Group/GroupMember";
 
 function App() {
   return (
@@ -24,10 +27,13 @@ function App() {
         <Route path="/slytherin/register" component={Register}></Route>
         <Layout>
           <Route exact={true} path="/slytherin" component={Home}></Route>
-          <Route path="/slytherin/chat" component={Chat}></Route>
+          <Route path="/slytherin/chat/:id" component={Chat}></Route>
           <Route path="/slytherin/profile/:username" component={Profile}></Route>
           <Route path="/slytherin/post/:id" component={Post}></Route>
           <Route path="/slytherin/friend/:id" component={Friend}></Route>
+          <Route path="/slytherin/groups/:id" component={Groups}></Route>
+          <Route path="/slytherin/group/:id" component={Group}></Route>
+          <Route path="/slytherin/groupmember/:id/:type" component={GroupMember}></Route>
         </Layout>
       </Switch>
     </Router>

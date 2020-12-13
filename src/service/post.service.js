@@ -19,5 +19,8 @@ class postServices {
   likeHandle = async (id) => {
     return postApi(`/like/${id}`, {});
   }
+  getPostByGroup = async (id, size = 10, page = 1) => {
+    return getApi(`/post/group/${id}?size=${size}&page=${page}`)
+  }
 }
 export default new postServices();

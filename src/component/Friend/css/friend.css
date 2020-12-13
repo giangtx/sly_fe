@@ -62,13 +62,14 @@
   display: -webkit-box;
 }
 .friend-item-des-div {
-  width: 150px;
+  width: 80px;
   height: 60px;
   overflow: hidden;
 }
 .btn-friend-add {
   padding-left: 15px;
   padding-top: 15px;
+  font-size: 15px;
 }
 .btn-friend-add button {
   border: none;
@@ -80,6 +81,7 @@
 .btn-friend-approval{
   padding-left: 15px;
   padding-top: 15px;
+  font-size: 15px;
 }
 .btn-friend-approval button{
   border: none;
@@ -87,6 +89,19 @@
   background-color: #20c997;
   outline: none !important;
   border-radius: 5px;
+}
+.btn-friend-un-approval{
+  padding-left: 15px;
+  padding-top: 15px;
+  font-size: 15px;
+}
+.btn-friend-un-approval button{
+  border: none;
+  color: black;
+  background-color: white;
+  outline: none !important;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
 }
 .active-header-friend {
   font-weight: 500;

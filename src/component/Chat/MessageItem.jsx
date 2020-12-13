@@ -1,9 +1,9 @@
 import React from "react";
 
-const MessageItem = ({ typeuser, content, senderimage}) => {
+const MessageItem = ({name, content, avatar, username}) => {
   return (
     <>
-      {typeuser === 1 ? (
+      {username === name ? (
         <div className="message" align="right">
           <div className="row">
             <div
@@ -19,7 +19,7 @@ const MessageItem = ({ typeuser, content, senderimage}) => {
             <div className="avatar-message-chat-div" style={{ padding: "0px" }}>
               <img
                 className="avatar-message-chat"
-                src={"/image/avatar/" + senderimage}
+                src={`http://localhost:3013/user/image/${avatar?avatar:"blank.jpg"}`}
                 alt=""
               />
             </div>
@@ -31,7 +31,7 @@ const MessageItem = ({ typeuser, content, senderimage}) => {
             <div className="avatar-message-chat-div" style={{ padding: "0px" }}>
               <img
                 className="avatar-message-chat"
-                src={"/image/avatar/" + senderimage}
+                src={`http://localhost:3013/user/image/${avatar?avatar:"blank.jpg"}`}
                 alt=""
               />
             </div>
