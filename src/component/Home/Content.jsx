@@ -17,7 +17,7 @@ const Content = ({
   totalPage,
 }) => {
   useEffect(() => {
-    getPostHome(10, 1);
+    getPostHome(20, 1);
   }, []);
   const list = posts.map((post, index) => {
     return (
@@ -32,6 +32,7 @@ const Content = ({
         statusLike={post.like.length > 0 ? true : false}
         images={post.images}
         createdAt={post.createdAt}
+        groupuser={post.groupuser}
         key={index}
       />
     );

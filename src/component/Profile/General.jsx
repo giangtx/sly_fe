@@ -39,7 +39,7 @@ const General = ({ description, address, gender, birthday }) => {
             Ngày sinh: {birthday}
           </span>
         </div>
-        <div className="profile-body-info">
+        {/* <div className="profile-body-info">
           <span className="info-profile-page">
             <span className="logo-info-profile-page">
               <i className="fas fa-graduation-cap"></i>
@@ -54,7 +54,7 @@ const General = ({ description, address, gender, birthday }) => {
             </span>{" "}
             Đang học tại DH thủy lợi
           </span>
-        </div>
+        </div> */}
       </div>
     </>
   );

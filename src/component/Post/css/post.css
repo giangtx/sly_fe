@@ -24,3 +24,56 @@
   padding-left: 10px;
   color: #5d5d5d;
 }
+.post-image-gallery .modal-dialog{
+  max-width: 1000px;
+}
+.post-image-gallery .modal-content{
+  border-radius: 0px;
+}
+.post-image-gallery .modal-body{
+  padding: 5px;
+}
+.edit-btn-post-detail{
+  cursor: pointer;
+  float: right;
+}
+.img-current-post-edit{
+  position: relative !important;
+}
+.xt-image-post-edit{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color:#ffffff00;
+  height: 100%;
+  line-height: 60px;
+  font-weight: 600;
+  margin-top: -60px;
+  cursor: pointer;
+}
+.xt-image-post-edit:hover{
+  background-color: #00000038;
+  color: white;
+}
+.none-img{
+  display: none;
+}
+.btn-rm-post button{
+  border: none;
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: none !important;
+}
+.rm-info-modal .modal-dialog {
+  max-width: 300px;
+}
+.btn-rm-post-huy button{
+  border: none;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: none !important;
+}

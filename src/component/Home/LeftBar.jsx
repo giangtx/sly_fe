@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
 import { Link } from "react-router-dom";
-import "./css/leftbar.css"
+import "./css/leftbar.css";
 
 const LefttBar = ({ userInfo, getInfo }) => {
   useEffect(() => {
@@ -23,7 +23,12 @@ const LefttBar = ({ userInfo, getInfo }) => {
             />
           </div>
           <div className="left-bar-info">
-            <Link to={`/slytherin/profile/${userInfo ? userInfo.username : ""}`} title="">{userInfo ? userInfo.username : ""}</Link>
+            <Link
+              to={`/slytherin/profile/${userInfo ? userInfo.username : ""}`}
+              title=""
+            >
+              {userInfo ? userInfo.username : ""}
+            </Link>
             <p>{userInfo ? userInfo.description : ""}</p>
           </div>
         </div>
@@ -40,6 +45,17 @@ const LefttBar = ({ userInfo, getInfo }) => {
           <div className="item-menu-left-bar-tab">
             <Link to="/slytherin/groups/my">Hội nhóm</Link>
           </div>
+          { userInfo.roles && userInfo.roles.map((role, index) => {
+            return (
+              <div key={index}>
+                {role.roleName === "ADMIN" && (
+                  <div className="item-menu-left-bar-tab">
+                    <Link to="/slytherin/admin/user">Quản trị viên</Link>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

@@ -11,7 +11,9 @@ const ChatBoxItemHome = ({ id, image, name, lastMessage }) => {
             <div className="avatar-chat-div-home" style={{ padding: "0px" }}>
               <img
                 className="avatar-chat-home"
-                src={`/image/avatar/${image}`}
+                src={`http://localhost:3013/user/image/${
+                  image ? image : "blank.jpg"
+                }`}
                 alt=""
               />
             </div>

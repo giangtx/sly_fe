@@ -8,4 +8,8 @@ export const auth = {
   REGISTER: "register",
   REGISTER_SUCCESS: "registerSuccess",
   REGISTER_FAILED: "registerFailed",
+  //verify
+  VERIFY_ACCOUNT: "verifyAccount",
+  VERIFY_ACCOUNT_SUCCESS: "verifyAccountSuccess",
+  VERIFY_ACCOUNT_FAILED: "verifyAccountFailed",
 };

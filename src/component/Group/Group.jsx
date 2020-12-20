@@ -13,7 +13,7 @@ import "./css/group.css";
 const Group = ({ posts, size, currentPage, totalPage, getPostByGroup }) => {
   const params = useParams();
   useEffect(() => {
-    getPostByGroup(params.id, 10, 1);
+    getPostByGroup(params.id, 20, 1);
   }, [params.id]);
   const list = posts.map((post, index) => {
     return (

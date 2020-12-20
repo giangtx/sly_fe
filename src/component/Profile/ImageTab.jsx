@@ -15,7 +15,6 @@ const ImageTab = ({
   useEffect(() => {
     getImageByUserName(username)
   }, []);
-  console.log(listImage)
   const lists = listImage.map((image, index) => {
     return (
       <div className="col-lg-4" key={index} style={{ padding: "0px" }}>

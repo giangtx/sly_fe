@@ -5,14 +5,26 @@ import { connect } from "react-redux";
 import Actions from "../../store/actions";
 import PropTypes from "prop-types";
 
-const Register = ({ register, registerError, registerSuccess, errorMessage }) => {
+const Register = ({
+  register,
+  registerError,
+  registerSuccess,
+  errorMessage,
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRp, setPasswordRp] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState();
 
   const registerHandle = () => {
-    register(username, password, email)
-  }
+    if (password !== passwordRp) {
+      setError(<span>Mật khẩu nhập lại không khớp</span>);
+    } else {
+      register(username, password, email);
+      setError(null)
+    }
+  };
 
   return (
     <>
@@ -101,23 +113,28 @@ const Register = ({ register, registerError, registerSuccess, errorMessage }) =>
                   id="txtConfirmPassword"
                   name="txtConfirmPassword"
                   style={{ height: "40px" }}
+                  onChange={(e) => {
+                    setPasswordRp(e.target.value);
+                  }}
                 />
               </div>
               <div id="btnSignin" onClick={registerHandle}>
-                <p id="login_p">
-                  {" "}
-                  Đăng ký{" "}
-                </p>
+                <p id="login_p"> Đăng ký </p>
               </div>
               <br />
               <p>
-                Bằng việc nhấn nút Đăng ký, bạn đã chấp nhận mọi{" "}
-                <Link to="#">Điều khoản </Link> của Slytherin
+                Nếu có tài khoản hãy
+                <Link to="/slytherin/login"> đăng nhâp </Link>
               </p>
               <div id="errorSignin" style={{ height: "20px" }}></div>
               <div className="login-error-message">
+                {error && error}
                 <span>{registerError ? errorMessage.error : ""}</span>
-                <span>{registerSuccess ? "Đăng ký tài khoản thành công vui lòng kiểm tra email" : ""}</span>
+                <span>
+                  {registerSuccess
+                    ? "Đăng ký tài khoản thành công vui lòng kiểm tra email"
+                    : ""}
+                </span>
               </div>
             </div>
           </div>
@@ -133,7 +150,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  register: (username, passWord, email) => dispatch(Actions.registerAction(username, passWord, email)),
+  register: (username, passWord, email) =>
+    dispatch(Actions.registerAction(username, passWord, email)),
 });
 
 Register.defaultProps = {

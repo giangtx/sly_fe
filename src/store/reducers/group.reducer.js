@@ -3,9 +3,14 @@ import { group } from "../actions/actionType";
 const groupInitialState = {
   groups: [],
   size: 0,
-  page: 0,
+  currentPage: 0,
   totalPage: 0,
   group: {},
+  //member
+  members: [],
+  sizeM: 0,
+  currentPageM: 0,
+  totalPageM: 0,
   //get user group
   getUserGroupPendingState: false,
   getUserGroupFailedState: false,
@@ -21,6 +26,16 @@ const groupInitialState = {
   getGroupByIdFailedState: false,
   getGroupByIdSuccessState: false,
   getGroupByIdErrorMessage: null,
+  //get member group
+  getMemberGroupPendingState: false,
+  getMemberGroupFailedState: false,
+  getMemberGroupSuccessState: false,
+  getMemberGroupErrorMessage: null,
+  // get member join group
+  getJoinGroupPendingState: false,
+  getJoinGroupFailedState: false,
+  getJoinGroupSuccessState: false,
+  getJoinGroupErrorMessage: null,
 };
 function groupReducer(state = groupInitialState, action) {
   const { payload, type } = action;
@@ -68,7 +83,7 @@ function groupReducer(state = groupInitialState, action) {
         currentPage: parseInt(payload.currentPage),
         totalPage: parseInt(payload.totalpage),
       };
-    case group.GET_OTHER_GROUP_FAILEDgetOtherGroup:
+    case group.GET_OTHER_GROUP_FAILED:
       return {
         ...state,
         getOtherGroupPendingState: false,
@@ -99,6 +114,58 @@ function groupReducer(state = groupInitialState, action) {
         getGroupByIdFailedState: true,
         getGroupByIdErrorMessage: payload,
         group: null,
+      };
+    case group.GET_MEMBER_GROUP:
+      return {
+        ...state,
+        getMemberGroupPendingState: true,
+      };
+    case group.GET_MEMBER_GROUP_SUCCESS:
+      return {
+        ...state,
+        getMemberGroupPendingState: false,
+        getMemberGroupFailedState: false,
+        getMemberGroupErrorMessage: null,
+        getMemberGroupSuccessState: true,
+        members: payload.data,
+        sizeM: parseInt(payload.size),
+        currentPageM: parseInt(payload.currentPage),
+        totalPageM: parseInt(payload.totalpage),
+      };
+    case group.GET_MEMBER_GROUP_FAILED:
+      return {
+        ...state,
+        getMemberGroupPendingState: false,
+        getMemberGroupSuccessState: false,
+        getMemberGroupFailedState: true,
+        getMemberGroupErrorMessage: payload,
+        members: [],
+      };
+    case group.GET_JOIN_GROUP:
+      return {
+        ...state,
+        getJoinGroupPendingState: true,
+      };
+    case group.GET_JOIN_GROUP_SUCCESS:
+      return {
+        ...state,
+        getJoinGroupPendingState: false,
+        getJoinGroupFailedState: false,
+        getJoinGroupErrorMessage: null,
+        getJoinGroupSuccessState: true,
+        members: payload.data,
+        sizeM: parseInt(payload.size),
+        currentPageM: parseInt(payload.currentPage),
+        totalPageM: parseInt(payload.totalpage),
+      };
+    case group.GET_JOIN_GROUP_FAILD:
+      return {
+        ...state,
+        getJoinGroupPendingState: false,
+        getJoinGroupSuccessState: false,
+        getJoinGroupFailedState: true,
+        getJoinGroupErrorMessage: payload,
+        members: [],
       };
     default:
       return state;

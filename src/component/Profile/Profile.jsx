@@ -19,6 +19,7 @@ const Profile = ({
   getFailed,
   getError,
   getProfileByUserName,
+  userInfo
 }) => {
   const params = useParams();
   const owner = Cookies.get("x-token-user");
@@ -35,13 +36,18 @@ const Profile = ({
           <div className="col-lg-9">
             <div className="profile-content" align="center">
               <ProfileHeader
-                owner={owner}
+                owner={userInfo.username}
                 params={params}
+                id={profile.id}
                 firstname={profile.firstname}
                 lastname={profile.lastname}
                 username={profile.username}
                 avatar={profile.avatar}
                 coverImage={profile.coverImage}
+                description={profile.description}
+                address={profile.address}
+                gender={profile.gender}
+                birthday={profile.birthday}
               />
               <div className="profile-body">
                 <div className="row">
@@ -53,9 +59,7 @@ const Profile = ({
                         gender={profile.gender}
                         birthday={profile.birthday}
                       />
-                      <FriendTab
-                        friends={profile.friends}
-                      />
+                      <FriendTab friends={profile.friends} />
                       <ImageTab username={params.username}></ImageTab>
                     </div>
                   </div>
@@ -84,6 +88,7 @@ const Profile = ({
   );
 };
 const mapStateToProps = (state) => ({
+  userInfo: state.user.userInfo,
   profile: state.user.profile,
   getSuccess: state.user.getByUsernameSuccessState,
   getFailed: state.user.getByUsernameFailedState,
@@ -98,11 +103,13 @@ const mapDispatchToProps = (dispatch) => ({
 Profile.defaultProps = {
   profile: null,
   getError: { error: "" },
+  userInfo: null,
 };
 
 Profile.propTypes = {
   getProfileByUserName: PropTypes.func.isRequired,
   profile: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  userInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   getSuccess: PropTypes.bool.isRequired,
   getFailed: PropTypes.bool.isRequired,
   getError: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

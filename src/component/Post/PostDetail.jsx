@@ -5,6 +5,11 @@ import PropTypes from "prop-types";
 import PostComment from "./PostComment";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+import Modal from "react-bootstrap/Modal";
+import EditPost from "./EditPost";
+import DeletePost  from "./DeletePost";
 
 const PostDetail = ({
   id,
@@ -17,11 +22,34 @@ const PostDetail = ({
   statusLike,
   images,
   createdAt,
-  likeAction
+  likeAction,
+  userInfo,
 }) => {
+  const [gallery, setGallery] = useState(Array);
+  const [startGallery, setStartGallery] = useState(0);
+  const [showGallery, setShowGallery] = useState(false);
+  useEffect(() => {
+    const imgs = [];
+    images.forEach((element) => {
+      imgs.push({
+        original: `http://localhost:3013/post/image/${element.name}`,
+        thumbnail: `http://localhost:3013/post/image/${element.name}`,
+        originalClass: "image-original-gallery",
+      });
+    });
+    setGallery(imgs);
+  }, [images]);
+  const handleShowGallery = (index) => {
+    setStartGallery(index);
+    setShowGallery(true);
+  };
+  const handleCloseGallery = () => {
+    setShowGallery(false);
+  };
   const likeHandle = (id) => {
-    likeAction(id)
-  }
+    likeAction(id);
+  };
+
   return (
     <>
       <div className="col-lg-8">
@@ -54,16 +82,31 @@ const PostDetail = ({
               </div>
               {/* <span style={{ fontSize: "14px" }}>{prettyDate(createdAt)}</span> */}
             </div>
+            {userInfo.username === username && (
+              <EditPost 
+                id={id}
+                content={content}
+                images={images}
+              />
+            )}
+            {userInfo.username === username && (
+              <DeletePost 
+                id={id}
+              />
+            )}
           </div>
           {images.length === 1 && (
-            <div>
-              <Link to={`/slytherin/post/${id}`} title="">
-                <img
-                  className="image-froum"
-                  src={`http://localhost:3013/post/image/${images[0].name}`}
-                  alt=""
-                />
-              </Link>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleShowGallery(0);
+              }}
+            >
+              <img
+                className="image-froum"
+                src={`http://localhost:3013/post/image/${images[0].name}`}
+                alt=""
+              />
             </div>
           )}
           {images.length === 2 && (
@@ -72,32 +115,34 @@ const PostDetail = ({
               style={{ margin: "0px", width: "100%", overflow: "hidden" }}
             >
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginRight: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[0].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item"
+                  style={{ marginRight: "3px", cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(0);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[0].name}`}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginLeft: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[1].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item"
+                  style={{ marginLeft: "3px", cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(1);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[1].name}`}
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
           )}
@@ -107,44 +152,55 @@ const PostDetail = ({
               style={{ margin: "0px", width: "100%", overflow: "hidden" }}
             >
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item-left"
-                    style={{ marginRight: "3px", height: "100%" }}
-                  >
-                    <img
-                      className="image-froum-left"
-                      src={`http://localhost:3013/post/image/${images[0].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item-left"
+                  style={{
+                    marginRight: "3px",
+                    height: "100%",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleShowGallery(0);
+                  }}
+                >
+                  <img
+                    className="image-froum-left"
+                    src={`http://localhost:3013/post/image/${images[0].name}`}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginLeft: "3px", marginBottom: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[1].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginLeft: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[2].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item"
+                  style={{
+                    marginLeft: "3px",
+                    marginBottom: "3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleShowGallery(1);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[1].name}`}
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="image-post-item"
+                  style={{ marginLeft: "3px", cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(2);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[2].name}`}
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
           )}
@@ -154,56 +210,67 @@ const PostDetail = ({
               style={{ margin: "0px", width: "100%", overflow: "hidden" }}
             >
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginBottom: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[0].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div className="image-post-item">
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[2].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item"
+                  style={{ marginBottom: "3px", cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(0);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[0].name}`}
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="image-post-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(2);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[2].name}`}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className="col-lg-6" style={{ padding: "0px" }}>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item"
-                    style={{ marginLeft: "3px", marginBottom: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[1].name}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-                <Link to={`/slytherin/post/${id}`} title="">
-                  <div
-                    className="image-post-item image-post-last-item"
-                    style={{ marginLeft: "3px" }}
-                  >
-                    <img
-                      className="image-froum"
-                      src={`http://localhost:3013/post/image/${images[3].name}`}
-                      alt=""
-                    />
-                    {images.length > 4 && (
-                      <div className="xt-image-post">+{images.length - 4}</div>
-                    )}
-                  </div>
-                </Link>
+                <div
+                  className="image-post-item"
+                  style={{
+                    marginLeft: "3px",
+                    marginBottom: "3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleShowGallery(1);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[1].name}`}
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="image-post-item image-post-last-item"
+                  style={{ marginLeft: "3px", cursor: "pointer" }}
+                  onClick={() => {
+                    handleShowGallery(3);
+                  }}
+                >
+                  <img
+                    className="image-froum"
+                    src={`http://localhost:3013/post/image/${images[3].name}`}
+                    alt=""
+                  />
+                  {images.length > 4 && (
+                    <div className="xt-image-post">+{images.length - 4}</div>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -220,11 +287,17 @@ const PostDetail = ({
           >
             <div className="icon-like col-lg-6">
               {statusLike ? (
-                <button className="like-button-post" onClick={() => likeHandle(id)}>
+                <button
+                  className="like-button-post"
+                  onClick={() => likeHandle(id)}
+                >
                   <img src="/image/icon/like-like.png" alt="" />
                 </button>
               ) : (
-                <button className="like-button-post" onClick={() => likeHandle(id)}>
+                <button
+                  className="like-button-post"
+                  onClick={() => likeHandle(id)}
+                >
                   <img src="/image/icon/like.png" alt="" />
                 </button>
               )}
@@ -241,9 +314,21 @@ const PostDetail = ({
           </div>
         </div>
       </div>
+      <Modal
+        className="post-image-gallery"
+        show={showGallery}
+        onHide={handleCloseGallery}
+      >
+        <Modal.Body>
+          <ImageGallery items={gallery} startIndex={startGallery} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
+const mapStateToProps = (state) => ({
+  userInfo: state.user.userInfo,
+});
 const mapDispatchToProps = (dispatch) => ({
   likeAction: (sizeP, pageP) => dispatch(Actions.likeAction(sizeP, pageP)),
 });
@@ -258,10 +343,12 @@ PostDetail.defaultProps = {
   statusLike: false,
   images: [],
   createdAt: "2020-02-02",
+  userInfo: null,
 };
 
 PostDetail.propTypes = {
   likeAction: PropTypes.func.isRequired,
+  userInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   images: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   id: PropTypes.number,
   content: PropTypes.string,
@@ -274,4 +361,4 @@ PostDetail.propTypes = {
   createdAt: PropTypes.string,
 };
 
-export default connect(null, mapDispatchToProps)(PostDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

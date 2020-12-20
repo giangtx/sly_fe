@@ -1,0 +1,7 @@
+.btn-admin-post button{
+    border: none;
+    color: white;
+    background: #dc3545;
+    outline: none !important;
+    border-radius: 5px;
+}

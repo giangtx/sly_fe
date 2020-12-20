@@ -15,14 +15,13 @@ const Header = ({
   logout,
 }) => {
   useEffect(() => {
-    if (loggedIn) {
-      getInfo();
-    }
+    getInfo();
   }, []);
   const handleLogout = async () => {
     await logout();
     document.location.href = "/";
   };
+  console.log(userInfo)
   return (
     <>
       <div>
@@ -58,9 +57,9 @@ const Header = ({
                 </ul>
               </div>
               <div className="col-lg-3 col-md-5 col-sm-3" align="right">
-                {getSuccess ? (
+                {userInfo.id ? (
                   <div className="info-user-header">
-                    <Link to="">
+                    <Link to={`/slytherin/profile/${userInfo.username}`}>
                       <div
                         className="avatar-header-div"
                         style={{ padding: "0px" }}
@@ -68,7 +67,7 @@ const Header = ({
                         <img
                           className="avatar-header"
                           src={`http://localhost:3013/user/image/${
-                            userInfo ? userInfo.avatar : ""
+                            userInfo.avatar
                           }`}
                           alt=""
                         />
@@ -76,7 +75,7 @@ const Header = ({
                     </Link>
 
                     <div className="text-info-header">
-                      <Link to="">{userInfo ? userInfo.username : ""}</Link>
+                      <Link to={`/slytherin/profile/${userInfo.username}`}>{userInfo.username}</Link>
                       <span onClick={handleLogout}> /Đăng xuất</span>
                     </div>
                   </div>

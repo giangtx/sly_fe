@@ -17,7 +17,7 @@ const PostTab = ({
   totalPage,
 }) => {
   useEffect(() => {
-    getPostByUserName(username, 10, 1);
+    getPostByUserName(username, 20, 1);
   }, []);
   const list = posts.map((post, index)=> {
     return (

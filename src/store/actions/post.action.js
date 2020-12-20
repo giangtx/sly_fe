@@ -79,6 +79,30 @@ export const createPostAction = (content, type, idGroup, isFile, file) => {
       });
   };
 };
+export const updatePostAction = (id, content, images, isFile, file) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(post.UPDATE_POST));
+    return postServices
+      .updatePost(id, content, images)
+      .then((result) => {
+        if(isFile) {
+          postServices.uploadImagePost(result.data.id, file)
+          .then((res)=>{
+            dispatch(actionCreator(post.UPDATE_POST_SUCCESS, res.data))
+          })
+        } else {
+          dispatch(actionCreator(post.UPDATE_POST_SUCCESS, result.data))
+        }
+      })
+      .catch((error) => {
+        dispatch(
+          actionCreator(post.UPDATE_POST_FAILED, {
+            error: error.message,
+          })
+        );
+      });
+  };
+};
 export const getOnePostByIdAction = (id) => {
   return async (dispatch) => {
     dispatch(actionCreator(post.GET_ONE_BY_ID));
@@ -116,6 +140,13 @@ export const likeAction = (id) => {
       })
   };
 };
+export const deletePostAction = (id) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(post.DELETE_POST));
+    return postServices
+      .deletePost(id)
+  };
+};
 export const getPostByGroupAction = (id, size, page) => {
   return async (dispatch) => {
     dispatch(actionCreator(post.GET_POST_BY_GROUP));
@@ -137,6 +168,33 @@ export const getPostByGroupAction = (id, size, page) => {
       .catch((error) => {
         dispatch(
           actionCreator(post.GET_POST_BY_GROUP_FAILED, {
+            error: error.message,
+          })
+        );
+      });
+  };
+};
+export const getPostAdminAction = (size, page) => {
+  return async (dispatch) => {
+    dispatch(actionCreator(post.GET_POST_ADMIN));
+    return postServices
+      .getAllPostAdmin(size, page)
+      .then((result) => {
+        if (result.status === 404) {
+          dispatch(
+            actionCreator(post.GET_POST_ADMIN_FAILED, {
+              error: "Người dùng không tồn tại",
+            })
+          );
+        } else {
+          dispatch(
+            actionCreator(post.GET_POST_ADMIN_SUCCESS, result.data)
+          );
+        }
+      })
+      .catch((error) => {
+        dispatch(
+          actionCreator(post.GET_POST_ADMIN_FAILED, {
             error: error.message,
           })
         );

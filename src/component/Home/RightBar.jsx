@@ -1,180 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ChatBoxItemHome from "./ChatBoxItemHome";
 import "./css/rightbar.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Actions from "../../store/actions";
 
-const RightBar = () => {
-  const chats = [
-    {
-      id: 1,
-      isActive: true,
-      image: "DSC02249.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 2,
-      isActive: false,
-      image: "1223.jpg",
-      name: "Mèo",
-      lastMessage: "Rau răm ở lại chịu đời đắng cay",
-      time: "3 tiếng trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Quê hương là chùm khế ngọt",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Cho con trèo hái mỗi ngày",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "maybe i should just quit and go back to making noodles",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "DSC02249.jpg",
-      name: "Chó",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-    {
-      id: 1,
-      isActive: false,
-      image: "gai.jpg",
-      name: "Mèo",
-      lastMessage: "Gió đưa cây cải về trời",
-      time: "1 phút trước",
-    },
-  ];
+const RightBar = ({
+  chats,
+  getSuccess,
+  getFailed,
+  getError,
+  getChatByUser,
+  size,
+  currentPage,
+  totalPage,
+}) => {
+  useEffect(() => {
+    getChatByUser(10, 1);
+  }, []);
   const list = chats.map((chat, index) => {
     return (
       <ChatBoxItemHome
         key={index}
         id={chat.id}
-        isActive={chat.isActive}
-        image={chat.image}
-        name={chat.name}
-        lastMessage={chat.lastMessage}
-        time={chat.time}
+        image={chat.type !== 1 ? chat.image : chat.member_chats[0].user.avatar}
+        name={chat.type !== 1 ? chat.name: chat.member_chats[0].user.username}
       ></ChatBoxItemHome>
     );
   });
@@ -191,4 +41,42 @@ const RightBar = () => {
     </>
   );
 };
-export default RightBar;
+const mapStateToProps = (state) => ({
+  chats: state.chat.chats,
+  getSuccess: state.chat.getChatByUserSuccessState,
+  getFailed: state.chat.getChatByUserFailedState,
+  getError: state.chat.getChatByUserErrorMessage,
+  size: state.chat.size,
+  currentPage: state.chat.currentPage,
+  totalPage: state.chat.totalPage,
+  // userInfo: state.user.userInfo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getChatByUser: (sizeP, pageP) =>
+    dispatch(Actions.getChatByUserAction(sizeP, pageP)),
+  // getInfo: () => dispatch(Actions.getInfo()),
+});
+
+RightBar.defaultProps = {
+  chats: [],
+  getError: { error: "" },
+  size: 0,
+  currentPage: 0,
+  totalPage: 0,
+  // userInfo: null,
+};
+
+RightBar.propTypes = {
+  // getInfo: PropTypes.func.isRequired,
+  // userInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  getChatByUser: PropTypes.func.isRequired,
+  chats: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  getSuccess: PropTypes.bool.isRequired,
+  getFailed: PropTypes.bool.isRequired,
+  getError: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  size: PropTypes.number,
+  currentPage: PropTypes.number,
+  totalPage: PropTypes.number,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(RightBar);

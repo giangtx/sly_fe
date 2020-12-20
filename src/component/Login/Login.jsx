@@ -4,13 +4,33 @@ import "./css/login.css";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
 import PropTypes from "prop-types";
+import Modal from "react-bootstrap/Modal";
 
-const Login = ({ login, loggedIn, loginPending, loginError }) => {
+const Login = ({
+  login,
+  loggedIn,
+  loginPending,
+  loginError,
+  verifyAccount,
+  verifyPending,
+  verifyFailed,
+  verifyError,
+  verifySuccess,
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState();
 
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleLogin = () => {
     login(username, password);
+  };
+  const handleVerify = () => {
+    verifyAccount(email, code);
   };
   return (
     <>
@@ -72,8 +92,19 @@ const Login = ({ login, loggedIn, loginPending, loginError }) => {
                   <p id="login_p"> Đăng nhập </p>
                 </div>
                 <br />
-                <p>
+                <p style={{ marginBottom: "5px" }}>
                   Bạn chưa có tài khoản ?<Link to="register">Đăng ký</Link>
+                </p>
+                <p style={{ marginBottom: "5px" }}>
+                  Tài khoản chưa kích hoạt?{" "}
+                  <span
+                    style={{ cursor: "pointer", color: "blue" }}
+                    onClick={() => {
+                      setShow(true);
+                    }}
+                  >
+                    Kích hoạt
+                  </span>
                 </p>
                 <div className="login-error-message">
                   <span>{loginError ? loginError.error : ""}</span>
@@ -84,6 +115,44 @@ const Login = ({ login, loggedIn, loginPending, loginError }) => {
           </div>
         </div>
       )}
+      <Modal show={show} onHide={handleClose} className="change-avatar-modal">
+        <Modal.Header closeButton>
+          <span>Xác thực tài khoản</span>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="edit-profile-div">
+            <div className="row">
+              <div className="col-lg-12">
+                <p>Email</p>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                ></input>
+              </div>
+              <div className="col-lg-12">
+                <p>Mã xác thực</p>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                  }}
+                ></input>
+              </div>
+              <div className="col-lg-12">
+                <div className="btn-edit-profile">
+                  <button onClick={handleVerify}>Xác thực</button>
+                </div>
+              </div>
+              <div className="login-error-message" style={{ paddingLeft: "15px" }}>
+                <span>{verifySuccess ? "Xác thực tài khoản thành công" : ""}</span>
+                <span>{verifyError ? verifyError.error : ""}</span>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
@@ -93,10 +162,14 @@ const mapStateToProps = (state) => ({
   loginFailed: state.auth.loginFailedState,
   loginError: state.auth.loginErrorMessage,
   loggedIn: state.auth.loginState,
+  verifyPending: state.auth.verifyAccountPendingState,
+  verifyFailed: state.auth.verifyAccountFailedState,
+  verifyError: state.auth.verifyAccountErrorMessage,
+  verifySuccess: state.auth.verifyAccountSuccessState,
 });
-
 const mapDispatchToProps = (dispatch) => ({
   login: (email, passWord) => dispatch(Actions.loginAction(email, passWord)),
+  verifyAccount: (email, code) => dispatch(Actions.verifyAccountAction(email, code)),
 });
 
 Login.defaultProps = {
@@ -104,6 +177,7 @@ Login.defaultProps = {
 };
 
 Login.propTypes = {
+  verifyAccount: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   loginPending: PropTypes.bool.isRequired,
   loggedIn: PropTypes.bool.isRequired,

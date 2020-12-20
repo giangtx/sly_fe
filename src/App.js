@@ -17,6 +17,7 @@ import Friend from '../src/component/Friend/Friend';
 import Groups from "../src/component/Group/Groups";
 import Group from "../src/component/Group/Group";
 import GroupMember from "../src/component/Group/GroupMember";
+import Admin from "../src/component/Admin/Admin";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/slytherin/groups/:id" component={Groups}></Route>
           <Route path="/slytherin/group/:id" component={Group}></Route>
           <Route path="/slytherin/groupmember/:id/:type" component={GroupMember}></Route>
+          <Route path="/slytherin/admin/:type" component={Admin}></Route>
         </Layout>
       </Switch>
     </Router>

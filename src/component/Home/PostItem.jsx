@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/postItem.css";
 import PropTypes from "prop-types";
@@ -15,6 +15,7 @@ const PostItem = ({
   statusLike,
   images,
   createdAt,
+  groupuser,
 }) => {
   return (
     <>
@@ -38,6 +39,19 @@ const PostItem = ({
             >
               {username}
             </Link>
+            {groupuser && (
+              <>
+              <span style={{padding:"0px 5px"}}>đăng trong</span>
+                <Link
+                  to={`/slytherin/group/${groupuser.id}`}
+                  style={{
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {groupuser.name}
+                </Link>
+              </>
+            )}
             <br />
             <div className="tooltip-post">
               {prettyDate(createdAt)}

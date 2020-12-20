@@ -21,4 +21,14 @@ export const post = {
   GET_POST_BY_GROUP: "getPostByGroup",
   GET_POST_BY_GROUP_SUCCESS: "getPostByGroupSuccess",
   GET_POST_BY_GROUP_FAILED: "getPostByGroupFailed",
+  //update post
+  UPDATE_POST : "updatePost",
+  UPDATE_POST_SUCCESS: "updatePostSuccess",
+  UPDATE_POST_FAILED: "updatePostFailed",
+  //get post admin
+  GET_POST_ADMIN: "getPostAdmin",
+  GET_POST_ADMIN_SUCCESS: "getPostAdminSuccess",
+  GET_POST_ADMIN_FAILED: "getPostAdminFailed",
+  // delete post
+  DELETE_POST: "deletePost",
 };

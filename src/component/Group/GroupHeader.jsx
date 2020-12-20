@@ -22,9 +22,7 @@ const GroupHeader = ({ group, getGroupById }) => {
           />
         </div>
         <div className="profile-header-info">
-          <div
-            className="avatar-group-header-div"
-          >
+          <div className="avatar-group-header-div">
             <img
               className="avatar-group-header-img"
               src={`http://localhost:3013/user/image/${group && group.avatar}`}
@@ -39,6 +37,9 @@ const GroupHeader = ({ group, getGroupById }) => {
             }}
           >
             <span className="name-profile-header">{group && group.name}</span>
+            <div>
+              <span style={{ fontSize: "16px" }}>{group && group.description}</span>
+            </div>
           </div>
         </div>
       </div>

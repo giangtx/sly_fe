@@ -8,6 +8,7 @@ import OtherGroupTab from "./OtherGroupTab";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
+import Modal from "react-bootstrap/Modal";
 
 const Groups = ({
   groups,
@@ -16,9 +17,15 @@ const Groups = ({
   totalPage,
   getUserGroup,
   getOtherGroup,
+  addGroup,
 }) => {
+  const [show, setShow] = useState(false);
+  const [rows, setRows] = useState(2);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const params = useParams();
   let list = null;
+
   useEffect(() => {
     list = null;
     if (params.id === "my") {
@@ -28,7 +35,36 @@ const Groups = ({
       getOtherGroup(10, 1, "");
     }
   }, [params.id]);
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleChange = (event) => {
+    const textareaLineHeight = 24;
+    const minRows = 2;
+    const maxRows = 10;
 
+    const previousRows = event.target.rows;
+    event.target.rows = minRows; // reset number of rows in textarea
+
+    const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
+
+    if (currentRows === previousRows) {
+      event.target.rows = currentRows;
+    }
+
+    if (currentRows >= maxRows) {
+      event.target.rows = maxRows;
+      event.target.scrollTop = event.target.scrollHeight;
+    }
+    setRows(currentRows < maxRows ? currentRows : maxRows);
+    setDescription(event.target.value);
+  };
+  const handleAddGroup = () => {
+    if (name) {
+      addGroup(name, description);
+      setShow(false)
+    }
+  };
   if (params.id === "my") {
     list = groups.map((group, index) => {
       return (
@@ -68,8 +104,20 @@ const Groups = ({
                   <div className="col-lg-8">
                     <div className="friend-header">
                       <div
+                        className="friend-header-text-friend btn-add-group"
+                        style={{ width: "180px" }}
+                      >
+                        <button
+                          onClick={() => {
+                            setShow(true);
+                          }}
+                        >
+                          Tạo nhóm
+                        </button>
+                      </div>
+                      <div
                         className="friend-header-text-friend"
-                        style={{ width: "170px" }}
+                        style={{ width: "209px" }}
                       >
                         <Link
                           to="/slytherin/groups/my"
@@ -112,6 +160,39 @@ const Groups = ({
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose} className="change-avatar-modal">
+        <Modal.Header closeButton>
+          <span>Tạo nhóm</span>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="edit-profile-div">
+            <div className="row">
+              <div className="col-lg-12">
+                <p>Tên nhóm</p>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                ></input>
+              </div>
+              <div className="col-lg-12">
+                <p>Mô tả</p>
+                <textarea
+                  className="edit-des-profile-textarea"
+                  rows={rows}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-lg-12">
+                <div className="btn-edit-profile">
+                  <button onClick={handleAddGroup}>Tạo nhóm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
@@ -127,6 +208,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Actions.getUserGroupAction(sizeP, pageP, searchP)),
   getOtherGroup: (sizeP, pageP, searchP) =>
     dispatch(Actions.getOtherGroupAction(sizeP, pageP, searchP)),
+  addGroup: (name, description) =>
+    dispatch(Actions.addGroupAction(name, description)),
 });
 
 Groups.defaultProps = {
@@ -139,6 +222,7 @@ Groups.defaultProps = {
 Groups.propTypes = {
   getUserGroup: PropTypes.func.isRequired,
   getOtherGroup: PropTypes.func.isRequired,
+  addGroup: PropTypes.func.isRequired,
   groups: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   size: PropTypes.number,
   currentPage: PropTypes.number,

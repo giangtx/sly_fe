@@ -7,7 +7,7 @@ export const getApi = async (url) => {
       Accept: "Application/json",
       "Content-type": "Application/json",
     },
-    credentials: 'include',
+    credentials: "include",
   };
   return fetch(BASE_URL + url, options).then((res) => res.json());
 };
@@ -19,7 +19,7 @@ export const postApi = async (url, data) => {
       Accept: "Application/json",
       "Content-type": "Application/json",
     },
-    credentials: 'include',
+    credentials: "include",
     body: JSON.stringify(data),
   };
   return fetch(BASE_URL + url, options).then((res) => res.json());
@@ -37,13 +37,21 @@ export const putApi = async (url, data) => {
   };
   return fetch(BASE_URL + url, options).then((res) => res.json());
 };
-export const postForm = async(url, data) => {
+export const postForm = async (url, data) => {
   const options = {
     method: "post",
-    headers: {
-    },
+    headers: {},
     credentials: "include",
     body: data,
   };
   return fetch(BASE_URL + url, options).then((res) => res.json());
-}
+};
+export const putForm = async (url, data) => {
+  const options = {
+    method: "put",
+    headers: {},
+    credentials: "include",
+    body: data,
+  };
+  return fetch(BASE_URL + url, options).then((res) => res.json());
+};

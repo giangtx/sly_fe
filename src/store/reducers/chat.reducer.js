@@ -3,7 +3,7 @@ import { chat } from "../actions/actionType";
 const chatInitialState = {
   chats: [],
   size: 0,
-  page: 0,
+  currentPage: 0,
   totalPage: 0,
   //get chat by user
   getChatByUserPendingState: false,

@@ -17,6 +17,11 @@ const authInitialState = {
   registerSuccessState: false,
   registerFailedState: false,
   registerErrorMessage: null,
+  // verify
+  verifyAccountPendingState: false,
+  verifyAccountSuccessState: false,
+  verifyAccountFailedState: false,
+  verifyAccountErrorMessage: null,
 };
 
 function authReducer(state = authInitialState, action) {
@@ -87,6 +92,27 @@ function authReducer(state = authInitialState, action) {
         registerSuccessState: false,
         registerErrorMessage: payload,
       };
+      case auth.VERIFY_ACCOUNT:
+        return {
+          ...state,
+          verifyAccountPendingState: true,
+        };
+      case auth.VERIFY_ACCOUNT_SUCCESS:
+        return {
+          ...state,
+          verifyAccountPendingState: false,
+          verifyAccountFailedState: false,
+          verifyAccountSuccessState: true,
+          verifyAccountErrorMessage: null,
+        };
+      case auth.VERIFY_ACCOUNT_FAILED:
+        return {
+          ...state,
+          verifyAccountPendingState: false,
+          verifyAccountFailedState: true,
+          verifyAccountSuccessState: false,
+          verifyAccountErrorMessage: payload,
+        };
     default:
       return state;
   }

@@ -2,9 +2,55 @@ import React, { useState, useEffect } from "react";
 import RightBar from "../Home/RightBar";
 import LeftBar from "../Home/LeftBar";
 import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Actions from "../../store/actions";
+import Member from "./Member";
+import MemberJoin from "./MemberJoin";
 
-const GroupMember = ({}) => {
+const GroupMember = ({
+  members,
+  size,
+  currentPage,
+  totalPage,
+  getMember,
+  getJoin,
+}) => {
   const params = useParams();
+  let list = null;
+  useEffect(() => {
+    list = null;
+    if (params.type === "mem") {
+      getMember(params.id, 10, 1, "")
+    }
+    if (params.type === "app") {
+      getJoin(params.id, 10, 1, "")
+    }
+  }, [params.type]);
+
+  if (params.type === "mem") {
+    list = members.map((member, index) => {
+      return (
+        <Member 
+          key={index}
+          user={member.user}
+          role={member.role}
+        />
+      );
+    });
+  }
+  if (params.type === "app") {
+    list = members.map((member, index) => {
+      return (
+        <MemberJoin 
+          key={index}
+          user={member.user}
+          role={member.role}
+          id={params.id}
+        />
+      );
+    });
+  }
   return (
     <>
       <div
@@ -19,7 +65,10 @@ const GroupMember = ({}) => {
                   <LeftBar></LeftBar>
                   <div className="col-lg-8">
                     <div className="friend-header">
-                      <div className="friend-header-text-friend" style={{width: "120px"}}>
+                      <div
+                        className="friend-header-text-friend"
+                        style={{ width: "120px" }}
+                      >
                         <Link
                           to={`/slytherin/groupmember/${params.id}/mem`}
                           className={`${
@@ -33,9 +82,7 @@ const GroupMember = ({}) => {
                         <Link
                           to={`/slytherin/groupmember/${params.id}/app`}
                           className={`${
-                            params.type === "app"
-                              ? "active-header-friend"
-                              : ""
+                            params.type === "app" ? "active-header-friend" : ""
                           }`}
                         >
                           Phê duyệt
@@ -51,73 +98,7 @@ const GroupMember = ({}) => {
                     </div>
                     <div className="friend-content">
                       <div className="row">
-
-                        <div className="col-lg-6">
-                          <div className="friend-info-item">
-                            <div className="friend-info-item-div">
-                              <img
-                                className="friend-avatar-item"
-                                src={`http://localhost:3013/user/image/1606399014697-upload-love_nameplate_inscription_117827_3840x2160.jpg`}
-                                alt=""
-                              />
-                            </div>
-                            <div className="friend-item-des-div">
-                              <Link
-                                to={`/slytherin/profile/slytherin`}
-                                title=""
-                              >
-                                Slytherin
-                              </Link>
-                              <p className="friend-item-des">
-                                Gió đưa cây cải về trời
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-6">
-                          <div className="friend-info-item">
-                            <div className="friend-info-item-div">
-                              <img
-                                className="friend-avatar-item"
-                                src={`http://localhost:3013/user/image/1606399014697-upload-love_nameplate_inscription_117827_3840x2160.jpg`}
-                                alt=""
-                              />
-                            </div>
-                            <div className="friend-item-des-div">
-                              <Link
-                                to={`/slytherin/profile/slytherin`}
-                                title=""
-                              >
-                                Slytherin
-                              </Link>
-                              <p className="friend-item-des">
-                                Gió đưa cây cải về trời
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-6">
-                          <div className="friend-info-item">
-                            <div className="friend-info-item-div">
-                              <img
-                                className="friend-avatar-item"
-                                src={`http://localhost:3013/user/image/1606399014697-upload-love_nameplate_inscription_117827_3840x2160.jpg`}
-                                alt=""
-                              />
-                            </div>
-                            <div className="friend-item-des-div">
-                              <Link
-                                to={`/slytherin/profile/slytherin`}
-                                title=""
-                              >
-                                Slytherin
-                              </Link>
-                              <p className="friend-item-des">
-                                Gió đưa cây cải về trời
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                        {list}
                       </div>
                     </div>
                   </div>
@@ -133,4 +114,31 @@ const GroupMember = ({}) => {
     </>
   );
 };
-export default GroupMember;
+const mapStateToProps = (state) => ({
+  members: state.group.members,
+  size: state.group.sizeM,
+  currentPage: state.group.currentPageM,
+  totalPage: state.group.totalPageM,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMember: (id, sizeP, pageP, searchP) => dispatch(Actions.getMemberGroupAction(id, sizeP, pageP, searchP)),
+  getJoin: (id, sizeP, pageP, searchP) => dispatch(Actions.getJoinGroupAction(id, sizeP, pageP, searchP)),
+});
+
+GroupMember.defaultProps = {
+  members: [],
+  size: 0,
+  currentPage: 0,
+  totalPage: 0,
+};
+
+GroupMember.propTypes = {
+  getMember: PropTypes.func.isRequired,
+  getJoin: PropTypes.func.isRequired,
+  members: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  size: PropTypes.number,
+  currentPage: PropTypes.number,
+  totalPage: PropTypes.number,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(GroupMember);

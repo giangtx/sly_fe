@@ -19,7 +19,6 @@ const Chat = ({ addMessage, userInfo }) => {
   useEffect(() => {
     socket = io(ENDPOINT);
     const room = params.id;
-    console.log(room)
     socket.emit("join", { name: userInfo.username, room }, (error) => {
       if (error) {
         alert(error);
@@ -31,7 +30,6 @@ const Chat = ({ addMessage, userInfo }) => {
     socket.on("message", (response) => {
       const room = params.id;
       if (response.idChat === parseInt(params.id)) {
-        console.log(response.idChat, params.id)
         addMessage(response);
       }
     });

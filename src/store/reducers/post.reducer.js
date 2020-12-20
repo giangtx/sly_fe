@@ -4,7 +4,7 @@ const postInitialState = {
   post: {},
   posts: [],
   size: 0,
-  page: 0,
+  currentPage: 0,
   totalPage: 0,
   //get post Home
   getPostHomePendingState: false,
@@ -31,6 +31,11 @@ const postInitialState = {
   getPostByGroupFailedState: false,
   getPostByGroupSuccessState: false,
   getPostByGroupErrorMessage: null,
+  //get post admin
+  getPostAdminPendingState: false,
+  getPostAdminFailedState: false,
+  getPostAdminSuccessState: false,
+  getPostAdminErrorMessage: null,
 };
 
 function postReducer(state = postInitialState, action) {
@@ -157,6 +162,41 @@ function postReducer(state = postInitialState, action) {
         getPostByGroupSuccessState: false,
         getPostByGroupFailedState: true,
         getPostByGroupErrorMessage: payload,
+        posts: [],
+      };
+    case post.UPDATE_POST:
+      return {
+        ...state,
+      };
+    case post.UPDATE_POST_SUCCESS:
+      return {
+        ...state,
+        post: payload,
+      };
+    case post.GET_POST_ADMIN:
+      return {
+        ...state,
+        getPostAdminPendingState: true,
+      };
+    case post.GET_POST_ADMIN_SUCCESS:
+      return {
+        ...state,
+        getPostAdminPendingState: false,
+        getPostAdminFailedState: false,
+        getPostAdminErrorMessage: null,
+        getPostAdminSuccessState: true,
+        posts: payload.data,
+        size: parseInt(payload.size),
+        currentPage: parseInt(payload.currentPage),
+        totalPage: parseInt(payload.totalpage),
+      };
+    case post.GET_POST_ADMIN_FAILED:
+      return {
+        ...state,
+        getPostAdminPendingState: false,
+        getPostAdminSuccessState: false,
+        getPostAdminFailedState: true,
+        getPostAdminErrorMessage: payload,
         posts: [],
       };
     default:

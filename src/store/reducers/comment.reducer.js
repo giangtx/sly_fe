@@ -3,7 +3,7 @@ import { comment } from "../actions/actionType";
 const commentInitialState = {
   comments: [],
   size: 0,
-  page: 0,
+  currentPage: 0,
   totalPage: 0,
   //get comment by id post
   getCommentByIdPostPendingState: false,

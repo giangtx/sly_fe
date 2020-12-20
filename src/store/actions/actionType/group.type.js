@@ -13,4 +13,16 @@ export const group = {
   GET_GROUP_BY_ID: "getGroupById",
   GET_GROUP_BY_ID_SUCCESS: "getGroupByIdSuccess",
   GET_GROUP_BY_ID_FAILED: "getGroupByIdFailed",
+  //get member
+  GET_MEMBER_GROUP: "getMemberGroup",
+  GET_MEMBER_GROUP_SUCCESS: "getMemberGroupSuccess",
+  GET_MEMBER_GROUP_FAILED: "getMemberGroupFailed",
+  //get memberjoin
+  GET_JOIN_GROUP: "getJoinGroup",
+  GET_JOIN_GROUP_SUCCESS: "getJoinGroupSuccess",
+  GET_JOIN_GROUP_FAILD: "getJoinGroupFaild",
+  //approval user group
+  APPROVAL_USER_GROUP: "approvalUserGroup",
+  //add group
+  ADD_GROUP: "addGroup",
 }

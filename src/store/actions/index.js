@@ -1,11 +1,50 @@
-import { loginAction, logoutAction, registerAction } from "./auth.action";
-import { getInfo, getProfileByUserName, getImageByUserName } from "./user.action";
-import { getPostHome, getPostByUserName, createPostAction, getOnePostByIdAction, likeAction, getPostByGroupAction } from "./post.action";
-import { getCommentByIdPostAction, createCommentAction } from "./comment.action";
-import { getFriendAction, getNotFriendAction, getApprovalAction, addFriendAction, approvalFriendAction } from "./friend.action";
+import { loginAction, logoutAction, registerAction, verifyAccountAction } from "./auth.action";
+import {
+  getInfo,
+  getProfileByUserName,
+  getImageByUserName,
+  changeUserAvatarAction,
+  updateUserAction,
+  changeUserCoverImageAction,
+  getAllActiveAction,
+  blockUserAction,
+  getUserBlockAction,
+  unblockUserAction,
+} from "./user.action";
+import {
+  getPostHome,
+  getPostByUserName,
+  createPostAction,
+  getOnePostByIdAction,
+  likeAction,
+  getPostByGroupAction,
+  updatePostAction,
+  getPostAdminAction,
+  deletePostAction,
+} from "./post.action";
+import {
+  getCommentByIdPostAction,
+  createCommentAction,
+} from "./comment.action";
+import {
+  getFriendAction,
+  getNotFriendAction,
+  getApprovalAction,
+  addFriendAction,
+  approvalFriendAction,
+} from "./friend.action";
 import { getChatByUserAction } from "./chat.action";
 import { getMessageByChatAction, addMessageAction } from "./message.action";
-import { getUserGroupAction, getOtherGroupAction, joinGroupAction, getGroupByIdAction } from "./group.action";
+import {
+  getUserGroupAction,
+  getOtherGroupAction,
+  joinGroupAction,
+  getGroupByIdAction,
+  getMemberGroupAction,
+  getJoinGroupAction,
+  approvalUserGroupAction,
+  addGroupAction,
+} from "./group.action";
 
 export default {
   loginAction,
@@ -34,4 +73,19 @@ export default {
   joinGroupAction,
   getPostByGroupAction,
   getGroupByIdAction,
-}
+  getMemberGroupAction,
+  getJoinGroupAction,
+  approvalUserGroupAction,
+  changeUserAvatarAction,
+  updateUserAction,
+  addGroupAction,
+  updatePostAction,
+  changeUserCoverImageAction,
+  getAllActiveAction,
+  blockUserAction,
+  getUserBlockAction,
+  unblockUserAction,
+  getPostAdminAction,
+  deletePostAction,
+  verifyAccountAction,
+};
