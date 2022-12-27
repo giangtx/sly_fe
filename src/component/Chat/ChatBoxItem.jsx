@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./css/listChatBox.css";
 
 const ChatBoxItem = ({ id, isActive, image, name, lastMessage, time }) => {

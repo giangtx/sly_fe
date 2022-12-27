@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const GroupForm = ({
   createPost,
@@ -45,6 +45,7 @@ const GroupForm = ({
     if (file) {
       Array.from(Array(file.length), (e, i) => {
         formData.append("file", file[i]);
+        return null;
       });
       isFile = true;
     }

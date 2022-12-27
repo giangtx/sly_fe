@@ -42,8 +42,8 @@ function messageReducer(state = messageInitialState, action) {
         messages: [],
       };
     case message.ADD_MESSAGE:
-      let index = state.messages.findIndex((el) => el.id == payload.id);
-      if (index == -1)
+      let index = state.messages.findIndex((el) => el.id === payload.id);
+      if (index === -1)
         return {
           ...state,
           messages: [...state.messages, payload],

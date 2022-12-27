@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ChatBoxItemHome from "./ChatBoxItemHome";
 import "./css/rightbar.css";
 import PropTypes from "prop-types";

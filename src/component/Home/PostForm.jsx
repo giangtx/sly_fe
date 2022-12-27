@@ -49,6 +49,7 @@ const PostForm = ({
     if (file) {
       Array.from(Array(file.length), (e, i) => {
         formData.append("file", file[i]);
+        return null;
       });
       isFile = true;
     }

@@ -1,4 +1,4 @@
-import { getApi, postApi } from "../utils/ApiUtils";
+import { getApi } from "../utils/ApiUtils";
 
 class messageServices {
   getMessageByChat = async (id, size = 10, page = 1) => {

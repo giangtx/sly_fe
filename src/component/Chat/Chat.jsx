@@ -28,7 +28,6 @@ const Chat = ({ addMessage, userInfo }) => {
 
   useEffect(() => {
     socket.on("message", (response) => {
-      const room = params.id;
       if (response.idChat === parseInt(params.id)) {
         addMessage(response);
       }

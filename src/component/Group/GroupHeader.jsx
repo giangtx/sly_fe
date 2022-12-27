@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../store/actions";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const GroupHeader = ({ group, getGroupById }) => {
   const params = useParams();

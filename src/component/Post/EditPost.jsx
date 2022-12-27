@@ -7,7 +7,6 @@ import Actions from "../../store/actions";
 const EditPost = ({ id, content, images, updatePost }) => {
   const [show, setShow] = useState(false);
   const [contentP, setContentP] = useState("");
-  const [value, setValue] = useState("");
   const [rows, setRows] = useState(2);
   const [file, setFile] = useState();
   const [target, setTarget] = useState(null);
@@ -33,7 +32,6 @@ const EditPost = ({ id, content, images, updatePost }) => {
       event.target.rows = maxRows;
       event.target.scrollTop = event.target.scrollHeight;
     }
-    setValue(event.target.value);
     setRows(currentRows < maxRows ? currentRows : maxRows);
     setContentP(event.target.value);
   };
@@ -55,6 +53,7 @@ const EditPost = ({ id, content, images, updatePost }) => {
     if (file) {
       Array.from(Array(file.length), (e, i) => {
         formData.append("file", file[i]);
+        return null;
       });
       isFile = true;
     }

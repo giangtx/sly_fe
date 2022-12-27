@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ChatBoxItem from "./ChatBoxItem";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import RightBar from "../Home/RightBar";
 import LeftBar from "../Home/LeftBar";
 import { Link, useParams } from "react-router-dom";

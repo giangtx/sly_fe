@@ -24,7 +24,6 @@ const PostComment = ({
     getCommentByIdPost(params.id, 10, 1);
     getInfo()
   }, []);
-  const [value, setValue] = useState("");
   const [rows, setRows] = useState(2);
   const [content, setContent] = useState("")
   const handleChange = (event) => {
@@ -45,7 +44,6 @@ const PostComment = ({
       event.target.rows = maxRows;
       event.target.scrollTop = event.target.scrollHeight;
     }
-    setValue(event.target.value);
     setRows(currentRows < maxRows ? currentRows : maxRows);
     setContent(event.target.value);
   };
